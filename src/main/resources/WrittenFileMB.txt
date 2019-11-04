@@ -1,0 +1,1 @@
+To jest linia zapisana do pliku za pomocą programu napisanego w Java
