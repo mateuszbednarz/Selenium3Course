@@ -19,9 +19,14 @@ public class FirstSeleniumTest {
         //driver.close(); // zamyka okno na którym jest focus (obecnie znajduje się driver)
         //driver.quit(); // zamyka wszystkie otwarte okna przeglądarki
 
-        WebElement firstnameInput = driver.findElement(By.name("fname"));
+        //WebElement firstnameInput = driver.findElement(By.name("fname"));
 
-        WebElement clickOnMeButton = driver.findElement(By.id("clickOnMe"));
-        WebElement clickOnMeButton2 = driver.findElementById("clickOnMe");
+        //WebElement clickOnMeButton = driver.findElement(By.id("clickOnMe"));
+        //WebElement clickOnMeButton2 = driver.findElementById("clickOnMe");
+
+        WebElement w3schoolLink = driver.findElement(By.linkText("Visit W3Schools.com!"));
+        WebElement googleLink = driver.findElement(By.partialLinkText("IamWeirdLink"));
+        WebElement topSecretParagraph = driver.findElement(By.className("topSecret"));
+        WebElement firstInput = driver.findElement(By.tagName("input"));
     }
 }
