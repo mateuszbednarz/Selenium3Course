@@ -1,0 +1,31 @@
+<students>
+    <student>
+        <name lang="en">John</name>
+        <surname class="red">Kovalsky</surname>
+        <surname>Kovalsky</surname>
+        <directory>Geology</directory>
+        <year>2</year>
+        <group>1</group>
+    </student>
+</students>
+
+<!--
+    parent = każdy element ma jednego rodzica
+    children = każdy element może mieć zero, jedno lub więcej dzieci
+    sibilings = gałęzie, które mają jednego, tego samego rodzica
+    ancestors = rodzic gałęzi oraz rodzic rodzica gałęzi, itd.
+    descendants = dziecko gałęzi oraz dzieci dziecka gałęzi, itd.
+-->
+
+<!--
+    XPath Examples:
+        /students/student/name
+        //name
+        /students//name
+        //name[text()='John']
+        //directory[text()='Geology']
+        //surname[@lang='en']
+        //surname[@class='red']
+        //a
+        //*[text()='Kovalsky']
+-->
