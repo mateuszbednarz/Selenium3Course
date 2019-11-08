@@ -9,8 +9,12 @@ package com.mbednarz;
 </select>
 */
 
-public class Select
+import org.openqa.selenium.WebElement;
+
+public class SelectElement
 {
+    public SelectElement(WebElement select) {}
+
     public void select(String visibleText)
     {
         System.out.println("Choose value with text = " + visibleText);
