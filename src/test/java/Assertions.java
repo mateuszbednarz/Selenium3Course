@@ -1,14 +1,12 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-public class GoogleSearchTest
+public class Assertions
 {
     @Test
-    public void googleSearch() throws InterruptedException
+    public void assertionsTest() throws InterruptedException
     {
         // SOFLAB CONFIG
         String driverPath = "C:\\Users\\mateusz.bednarz\\Documents\\IntelliJ-Projects\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
@@ -30,6 +28,12 @@ public class GoogleSearchTest
         Thread.sleep(3000, 0);
         seleniumPageLink.click();
         Thread.sleep(3000, 0);
-        //driver.quit();
+
+        String expectedTitle = "Selenium WebDriver";
+        System.out.println("Website title = " + driver.getTitle());
+
+        // ASERCJE, są to metody, które umożliwiają nam sprawdzenie pewnych warunków
+
+        driver.quit();
     }
 }
