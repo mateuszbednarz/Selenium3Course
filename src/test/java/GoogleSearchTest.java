@@ -10,14 +10,14 @@ public class GoogleSearchTest
     @Test
     public void googleSearch() throws InterruptedException
     {
-        // HOME LENOVO CONFIG
+        // HOME CONFIG
         String driverPath = "E:\\mav-temp-iji\\Selenium3Course\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", driverPath);
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         //driver.get("E://mav-temp-iji//pliki-dolaczone-do-kursu//Test.html");
 
-        // SOFLAB DELL CONFIG
+        // SOFLAB CONFIG
         //String driverPath = "C:\\Users\\mateusz.bednarz\\Documents\\IntelliJ-Projects\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         //System.setProperty("webdriver.chrome.driver", driverPath);
         //ChromeDriver driver = new ChromeDriver();
@@ -32,11 +32,11 @@ public class GoogleSearchTest
         WebElement searchButton = driver.findElement(By.name("btnK"));
         searchButton.click();
         Thread.sleep(3000, 0);
-        //searchInput.sendKeys(Keys.ENTER);
+        searchInput.sendKeys(Keys.ENTER);
         WebElement seleniumPageLink = driver.findElement(By.className("S3Uucc"));
         Thread.sleep(3000, 0);
         seleniumPageLink.click();
         Thread.sleep(3000, 0);
-        //driver.quit();
+        driver.quit();
     }
 }
