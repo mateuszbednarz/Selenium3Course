@@ -32,7 +32,7 @@ public class Assertions
         String expectedTitle = "Selenium WebDriver";
         System.out.println("Website title = " + driver.getTitle());
 
-        // ASERCJE, są to metody, które umożliwiają nam sprawdzenie pewnych warunków
+        // ASERCJE, są to metody, które umożliwiają nam sprawdzenie pewnych warunków w danym teście
 
         driver.quit();
     }
