@@ -61,7 +61,7 @@ public class Assertions {
 
         //Assert.assertEquals(driver.getTitle(), expectedWebsiteTitle);
         //assertTrue(expectedWebsiteTitle.equals(driver.getTitle()));
-        assertTrue(driver.getTitle().equals("Selenium Projects"), "ASSERT MSG: Titles are NOT EQUAL!");
+        //assertTrue(driver.getTitle().equals("Selenium Projects"), "ASSERT MSG: Titles are NOT EQUAL!");
     }
 
     @Test
