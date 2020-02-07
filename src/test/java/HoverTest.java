@@ -18,7 +18,5 @@ public class HoverTest extends BaseSeleniumTest
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.id("navbtn_tutorials"))).build().perform();
         Thread.sleep(3000, 0);
-
-        driver.quit();
     }
 }
