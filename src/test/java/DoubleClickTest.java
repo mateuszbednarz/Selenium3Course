@@ -7,22 +7,31 @@ import org.testng.annotations.Test;
 /**
  * @author mbednarz-job
  * @created 07/02/2020 - 16:39
- * @last_modified 07/02/2020 - 16:54 [mbednarz-job]
+ * @last_modified 18/02/2020 - 21:59 [mbednarz-home]
  * @project kurs-selenium
  */
 
 public class DoubleClickTest extends BaseSeleniumTest
 {
+    /* -- LESSON 94: Symulacja podwójnego kliknięcia -- */
+    /* -- LESSON 95: Tworzenie zrzutów okna przeglądarki -- */
     @Test
     private void doubleClickTest() throws InterruptedException
     {
-        driver.get("file:///C:/Users/mateusz.bednarz/Documents/SelCourseTestWebPage/DoubleClick.html");
+        SeleniumHelper seleniumHelper = new SeleniumHelper(driver);
+
+        driver.get("file:///E:/mav-temp-iji/pliki-dolaczone-do-kursu/DoubleClick.html");
         WebElement button = driver.findElement(By.id("bottom"));
+        Thread.sleep(3000, 0);
 
         Actions action = new Actions(driver);
+        action.moveToElement(button).doubleClick().build().perform();
+        Thread.sleep(3000, 0);
+
+        seleniumHelper.takeScreenshot();
+        Thread.sleep(3000, 0);
 
         Assert.assertTrue(driver.getWindowHandles().size() > 1);
-
-        driver.quit();
+        Thread.sleep(3000, 0);
     }
 }

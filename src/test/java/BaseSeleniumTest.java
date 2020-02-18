@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeTest;
 /**
  * @author mbednarz-job
  * @created 05/02/2020 - 17:41
- * @last_modified 07/02/2020 - 22:18 [mbednarz-home]
+ * @last_modified 18/02/2020 - 19:17 [mbednarz-home]
  * @project kurs-selenium
  */
 
@@ -20,21 +20,11 @@ public abstract class BaseSeleniumTest
     {
         System.out.println("Executed BEFORE test!");
 
-        // HOME CONFIG
+        // DRIVER CONFIG
         String driverPath = "E:\\mav-temp-iji\\Selenium3Course\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", driverPath);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
-
-        // SOFLAB CONFIG
-        /*
-        String driverPath = "C:\\Users\\mateusz.bednarz\\Documents\\IntelliJ-Projects\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", driverPath);
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        //driver.get("C://Users//mateusz.bednarz//Documents//SelCourseTestWebPage//Test.html");
-        */
     }
 
     @AfterTest
