@@ -10,6 +10,7 @@ import java.io.File;
  * @project Selenium3Course
  */
 
+/* -- LESSON 97: Upload pliku -- */
 public class FileUploadTest extends BaseSeleniumTest
 {
     @Test
