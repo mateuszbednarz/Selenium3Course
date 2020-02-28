@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 /* -- LESSON 99: Oczekiwanie na element - Thread().sleep -- */
 /* -- LESSON 100: Oczekiwanie na element - Implicit Wait -- */
 /* -- LESSON 101: Oczekiwanie na element - WebDriver Wait -- */
+/* -- LESSON 102: Oczekiwanie na element - Fluent Wait -- */
 public class WaitsTest extends BaseSeleniumTest
 {
     @Test
