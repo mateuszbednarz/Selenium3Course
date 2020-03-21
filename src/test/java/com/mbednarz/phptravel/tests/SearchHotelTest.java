@@ -20,6 +20,15 @@ public class SearchHotelTest extends BaseTestSettings
         driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
         HomePage hp = new HomePage(driver);
-        hp.sendKeysToCityInput("Dubai");
+        hp.setCityHotel("Dubai");
+        hp.setDateRange("09/11/2018", "09/13/2018");
+        hp.openTravellersModal();
+        Thread.sleep(3000);
+        hp.addAdultPassenger();
+        Thread.sleep(3000);
+        hp.addChildPassenger();
+        Thread.sleep(3000);
+        hp.addChildPassenger();
+        Thread.sleep(3000);
     }
 }
