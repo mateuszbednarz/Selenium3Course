@@ -1,11 +1,11 @@
 package com.mbednarz.phptravel.tests;
 
 import com.mbednarz.phptravel.pages.HomePage;
+import com.mbednarz.phptravel.pages.ResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author mbednarz
@@ -24,6 +24,9 @@ import java.util.concurrent.TimeUnit;
 /* -- LESSON 120: Dodanie metod oczekujących na element -- */
 /* -- LESSON 121: Zamiana Thread.sleep() na Wait -- */
 /* -- LESSON 122: Dodanie Wait() czekającego na WebElement -- */
+/* -- LESSON 123: Naprawa Wait() czekającego na WebElement -- */
+/* -- LESSONS: 124; 125; 126; 127 -- */
+/* -- LESSON 130: TestNG - Data Provider -- */
 
 public class SearchHotelTest extends BaseTestSettings
 {
@@ -32,32 +35,26 @@ public class SearchHotelTest extends BaseTestSettings
     {
         //driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
-        HomePage hp = new HomePage(driver);
-        hp.setCityHotel("Dubai");
-        hp.setDateRange("09/11/2018", "09/13/2018");
-        hp.openTravellersModal();
-        Thread.sleep(2000);
-        hp.addAdultPassenger();
-        Thread.sleep(2000);
-        hp.addChildPassenger();
-        Thread.sleep(2000);
-        hp.addChildPassenger();
-        Thread.sleep(2000);
-        hp.performSearch();
-        Thread.sleep(2000);
+        HomePage homePage = new HomePage(driver);
+        ResultPage resultPage = homePage
+           .setCityHotel("Dubai")
+           .setDateRange("09/11/2018", "09/13/2018")
+           .openTravellersModal()
+           .addAdultPassenger()
+           .addChildPassenger()
+           .addChildPassenger()
+           .performSearch();
 
-        List<String> hotelNamesList = hp.getHotelNames();
+        List<String> hotelNamesList = resultPage.getHotelNames();
         Assert.assertEquals("Jumeirah Beach Hotel", hotelNamesList.get(0));
         Assert.assertEquals("Oasis Beach Tower", hotelNamesList.get(1));
         Assert.assertEquals("Rose Rayhaan Rotana", hotelNamesList.get(2));
         Assert.assertEquals("Hyatt Regency Perth", hotelNamesList.get(3));
-        Thread.sleep(2000);
 
-        List<String> hotelPricesList = hp.getHotelPrices();
+        List<String> hotelPricesList = resultPage.getHotelPrices();
         Assert.assertEquals("$22", hotelPricesList.get(0));
         Assert.assertEquals("$50", hotelPricesList.get(1));
         Assert.assertEquals("$80", hotelPricesList.get(2));
         Assert.assertEquals("$150", hotelPricesList.get(3));
-        Thread.sleep(2000);
     }
 }

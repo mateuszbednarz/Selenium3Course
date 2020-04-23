@@ -1,16 +1,11 @@
 package com.mbednarz.phptravel.pages;
 
 import com.mbednarz.phptravel.helpers.SeleniumHelper;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author mbednarz
@@ -29,6 +24,8 @@ import java.util.stream.Collectors;
 /* -- LESSON 120: Dodanie metod oczekujących na element -- */
 /* -- LESSON 121: Zamiana Thread.sleep() na Wait -- */
 /* -- LESSON 122: Dodanie Wait() czekającego na WebElement -- */
+/* -- LESSON 123: Naprawa Wait() czekającego na WebElement -- */
+/* -- LESSONS: 124; 125; 126; 127-- */
 
 public class HomePage
 {
@@ -56,72 +53,62 @@ public class HomePage
     @FindBy(xpath = "//button[text()=' Search']")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//table[@class='bgwhite table table-striped']")
-    private WebElement resultsTable;
+    @FindBy(xpath = "//div[@class='select2-result-label']")
+    private WebElement selectResult;
 
     private SeleniumHelper helper;
+
+    private WebDriver driver;
 
     public HomePage(WebDriver driver)
     {
         PageFactory.initElements(driver, this);
         this.helper = new SeleniumHelper(driver);
+        this.driver = driver;
     }
 
-    public void setCityHotel(String cityName)
+    public HomePage setCityHotel(String cityName)
     {
         searchSpan.click();
         searchCityInput.sendKeys(cityName);
-        By locationLabel = By.xpath("//div[@class='select2-result-label']");
-        helper.waitForElementToBeDisplayed(locationLabel);
+        /* By locationLabel = By.xpath("//div[@class='select2-result-label']");
+        helper.waitForElementToBeDisplayed(locationLabel); */
+        // WebElement element = driver.findElement(By.xpath("//div[@class='select2-result-label']"));
+        helper.waitForElementToBeDisplayed(selectResult);
         searchCityInput.sendKeys(Keys.ENTER);
+        return this;
     }
 
-    public void setDateRange(String checkinDate, String checkoutDate) throws InterruptedException
+    public HomePage setDateRange(String checkinDate, String checkoutDate) throws InterruptedException
     {
         checkinInput.sendKeys(checkinDate);
         checkoutInput.sendKeys(checkoutDate);
         checkoutInput.click();
+        return this;
     }
 
-    public void openTravellersModal()
+    public HomePage openTravellersModal()
     {
         travellersInput.click();
+        helper.waitForElementToBeDisplayed(adultPlusBtn);
+        return this;
     }
 
-    public void addAdultPassenger()
+    public HomePage addAdultPassenger()
     {
         adultPlusBtn.click();
+        return this;
     }
 
-    public void addChildPassenger()
+    public HomePage addChildPassenger()
     {
         childPlusBtn.click();
+        return this;
     }
 
-    public void performSearch()
+    public ResultPage performSearch()
     {
         searchButton.click();
-    }
-
-    public List<String> getHotelNames()
-    {
-        List<String> hotelNamesList = new ArrayList<>();
-        List<WebElement> hotelNamesWebElements = resultsTable.findElements(By.xpath("//h4//b"));
-
-        for(WebElement hotelNameElement : hotelNamesWebElements)
-        {
-            System.out.println(hotelNameElement.getText());
-            hotelNamesList.add(hotelNameElement.getText());
-        }
-
-        return hotelNamesList;
-    }
-
-    public List<String> getHotelPrices()
-    {
-        List<WebElement> hotelPrices = resultsTable.findElements(By.xpath("//div[contains(@class, 'price_tab')]//b"));
-        List<String> prices = hotelPrices.stream().map(element -> element.getText()).collect(Collectors.toList());
-
-        return prices;
+        return new ResultPage(driver);
     }
 }
