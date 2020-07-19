@@ -1,13 +1,14 @@
 package com.mbednarz.phptravel.helpers;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -15,6 +16,10 @@ import java.util.List;
  * @created 13/04/2020 - 22:02
  * @project Selenium3Course
  */
+
+/* -- LESSON 132: Robienie screenshotów -- */
+/* -- LESSON 133: Robienie screenshotów, gdy test failuje + Driver Factory -- */
+
 public class SeleniumHelper
 {
     private WebDriver driver;
@@ -44,4 +49,13 @@ public class SeleniumHelper
         wait.withTimeout(Duration.ofSeconds(15)).pollingEvery(Duration.ofMillis(2000)).ignoring(NoSuchElementException.class);
         wait.until(driver1 -> elementList.size() > 0);
     }
+
+    public static void takeScreenshot(WebDriver driver) throws IOException
+    {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File screenshotFile = ts.getScreenshotAs(OutputType.FILE);
+        File destinationFile = new File("src/main/resources/" + LocalTime.now().getNano() + ".jpg");
+        Files.copy(screenshotFile.toPath(), destinationFile.toPath());
+    }
+
 }

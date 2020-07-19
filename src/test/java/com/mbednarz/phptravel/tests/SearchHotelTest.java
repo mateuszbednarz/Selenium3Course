@@ -1,10 +1,12 @@
 package com.mbednarz.phptravel.tests;
 
+import com.mbednarz.phptravel.helpers.SeleniumHelper;
 import com.mbednarz.phptravel.pages.HomePage;
 import com.mbednarz.phptravel.pages.ResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -31,7 +33,7 @@ import java.util.List;
 public class SearchHotelTest extends BaseTestSettings
 {
     @Test
-    public void searchHotelTest() throws InterruptedException
+    public void searchHotelTest() throws InterruptedException, IOException
     {
         //driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
@@ -46,6 +48,9 @@ public class SearchHotelTest extends BaseTestSettings
            .performSearch();
 
         List<String> hotelNamesList = resultPage.getHotelNames();
+
+        SeleniumHelper.takeScreenshot(driver);
+
         Assert.assertEquals("Jumeirah Beach Hotel", hotelNamesList.get(0));
         Assert.assertEquals("Oasis Beach Tower", hotelNamesList.get(1));
         Assert.assertEquals("Rose Rayhaan Rotana", hotelNamesList.get(2));

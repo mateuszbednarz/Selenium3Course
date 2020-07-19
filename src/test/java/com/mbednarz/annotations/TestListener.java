@@ -1,5 +1,6 @@
 package com.mbednarz.annotations;
 
+import com.mbednarz.phptravel.helpers.SeleniumHelper;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -30,6 +31,7 @@ public class TestListener implements ITestListener
     public void onTestFailure(ITestResult result)
     {
         System.out.println("On test failure!");
+        SeleniumHelper.takeScreenshot();
     }
 
     @Override
