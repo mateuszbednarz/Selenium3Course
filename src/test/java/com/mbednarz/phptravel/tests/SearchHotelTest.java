@@ -1,9 +1,11 @@
 package com.mbednarz.phptravel.tests;
 
+import com.mbednarz.phptravel.helpers.TestListener;
 import com.mbednarz.phptravel.helpers.SeleniumHelper;
 import com.mbednarz.phptravel.pages.HomePage;
 import com.mbednarz.phptravel.pages.ResultPage;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ import java.util.List;
 /* -- LESSONS: 124; 125; 126; 127 -- */
 /* -- LESSON 130: TestNG - Data Provider -- */
 
+@Listeners(TestListener.class)
 public class SearchHotelTest extends BaseTestSettings
 {
     @Test
@@ -60,6 +63,5 @@ public class SearchHotelTest extends BaseTestSettings
         Assert.assertEquals("$22", hotelPricesList.get(0));
         Assert.assertEquals("$50", hotelPricesList.get(1));
         Assert.assertEquals("$80", hotelPricesList.get(2));
-        Assert.assertEquals("$150", hotelPricesList.get(3));
     }
 }

@@ -24,7 +24,7 @@ public class Assertions {
         System.out.println("Executed BEFORE test!");
 
         // HOME CONFIG
-        //String driverPath = "E:\\mav-temp-iji\\Selenium3Course\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
+        //String driverPath = "E:\\IT Knowledge Base\\DEV & QA\\Testing\\MB_Testing_Projects\\Selenium3Course\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         //System.setProperty("webdriver.chrome.driver", driverPath);
         //ChromeDriver driver = new ChromeDriver();
         //driver.manage().window().maximize();

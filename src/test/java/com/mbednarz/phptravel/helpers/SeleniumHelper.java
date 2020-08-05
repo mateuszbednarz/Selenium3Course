@@ -1,7 +1,6 @@
 package com.mbednarz.phptravel.helpers;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.io.File;
@@ -29,19 +28,21 @@ public class SeleniumHelper
         this.driver = driver;
     }
 
-    public void waitForElementToBeDisplayed(By locator)
+    public void waitForElementToBeDisplayed(WebElement locator)
     {
         FluentWait<WebDriver> wait = new FluentWait<>(driver);
-        wait.withTimeout(Duration.ofSeconds(15)).pollingEvery(Duration.ofMillis(2000)).ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        FluentWait<WebDriver> ignoring = wait.withTimeout(Duration.ofSeconds(15)).pollingEvery(Duration.ofMillis(2000)).ignoring(NoSuchElementException.class);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated((locator));
     }
 
+    /*
     public void waitForElementToBeDisplayed(WebElement element)
     {
         FluentWait<WebDriver> wait = new FluentWait<>(driver);
         wait.withTimeout(Duration.ofSeconds(15)).pollingEvery(Duration.ofMillis(2000)).ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+    */
 
     public void waitForListOfWebElements(List<WebElement> elementList)
     {

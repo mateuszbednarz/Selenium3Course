@@ -20,7 +20,7 @@ public class DoubleClickTest extends BaseSeleniumTest
     {
         SeleniumHelper seleniumHelper = new SeleniumHelper(driver);
 
-        driver.get("file:///E:/mav-temp-iji/pliki-dolaczone-do-kursu/DoubleClick.html");
+        driver.get("file:///E:/IT Knowledge Base/DEV & QA/Testing/MB_Testing_Projects/sel3-course-files/DoubleClick.html");
         WebElement button = driver.findElement(By.id("bottom"));
         Thread.sleep(3000, 0);
 
