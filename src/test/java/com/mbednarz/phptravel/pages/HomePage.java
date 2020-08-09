@@ -1,7 +1,6 @@
 package com.mbednarz.phptravel.pages;
 
 import com.mbednarz.phptravel.helpers.SeleniumHelper;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,10 +79,10 @@ public class HomePage
         return this;
     }
 
-    public HomePage setDateRange(String checkinDate, String checkoutDate) throws InterruptedException
+    public HomePage setDateRange(String checkInDate, String checkOutDate)
     {
-        checkinInput.sendKeys(checkinDate);
-        checkoutInput.sendKeys(checkoutDate);
+        checkinInput.sendKeys(checkInDate);
+        checkoutInput.sendKeys(checkOutDate);
         checkoutInput.click();
         return this;
     }

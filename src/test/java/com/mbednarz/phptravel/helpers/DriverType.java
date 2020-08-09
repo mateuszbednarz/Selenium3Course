@@ -12,6 +12,6 @@ public enum DriverType
 {
     FIREFOX,
     CHROME,
-    IE
-
+    IE,
+    EDGE
 }

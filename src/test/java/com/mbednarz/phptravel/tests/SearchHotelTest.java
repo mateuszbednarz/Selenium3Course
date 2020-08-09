@@ -5,11 +5,15 @@ import com.mbednarz.phptravel.helpers.SeleniumHelper;
 import com.mbednarz.phptravel.pages.HomePage;
 import com.mbednarz.phptravel.pages.ResultPage;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import static com.mbednarz.phptravel.helpers.ExcelHelper.readExcelFile;
 
 /**
  * @author mbednarz
@@ -31,19 +35,25 @@ import java.util.List;
 /* -- LESSON 123: Naprawa Wait() czekającego na WebElement -- */
 /* -- LESSONS: 124; 125; 126; 127 -- */
 /* -- LESSON 130: TestNG - Data Provider -- */
+/* -- LESSON 142: @DataProvider z pliku Excel (część 2) -- */
+/* -- LESSON 143: Resetowanie driver'a po każdym teście -- */
 
 @Listeners(TestListener.class)
 public class SearchHotelTest extends BaseTestSettings
 {
-    @Test
-    public void searchHotelTest() throws InterruptedException, IOException
+    @Test(dataProvider = "getData")
+    public void searchHotelTest(String city, String checkInDate, String checkOutDate,
+                                String fHotelName, String fPrice,
+                                String sHotelName, String sPrice,
+                                String tHotelName, String tPrice) throws InterruptedException, IOException
     {
         //driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
+        //driver.get("http://www.phptravels.net/home/");
         HomePage homePage = new HomePage(driver);
         ResultPage resultPage = homePage
-           .setCityHotel("Dubai")
-           .setDateRange("09/11/2018", "09/13/2018")
+           .setCityHotel(city)
+           .setDateRange(checkInDate, checkOutDate)
            .openTravellersModal()
            .addAdultPassenger()
            .addChildPassenger()
@@ -54,14 +64,25 @@ public class SearchHotelTest extends BaseTestSettings
 
         SeleniumHelper.takeScreenshot(driver);
 
-        Assert.assertEquals("Jumeirah Beach Hotel", hotelNamesList.get(0));
-        Assert.assertEquals("Oasis Beach Tower", hotelNamesList.get(1));
-        Assert.assertEquals("Rose Rayhaan Rotana", hotelNamesList.get(2));
-        Assert.assertEquals("Hyatt Regency Perth", hotelNamesList.get(3));
+        Assert.assertEquals(fHotelName, hotelNamesList.get(0));
+        Assert.assertEquals(sHotelName, hotelNamesList.get(1));
+        Assert.assertEquals(tHotelName, hotelNamesList.get(2));
 
         List<String> hotelPricesList = resultPage.getHotelPrices();
-        Assert.assertEquals("$22", hotelPricesList.get(0));
-        Assert.assertEquals("$50", hotelPricesList.get(1));
-        Assert.assertEquals("$80", hotelPricesList.get(2));
+        Assert.assertEquals(hotelPricesList.get(0),fPrice);
+        Assert.assertEquals(hotelPricesList.get(1),sPrice);
+        Assert.assertEquals(hotelPricesList.get(2),tPrice);
+    }
+
+    @DataProvider
+    public Object[][] getData()
+    {
+        Object[][] data = null;
+        try {
+            data = readExcelFile(new File("src//main//resources//files//Dane.xlsx"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 }

@@ -4,8 +4,12 @@ import com.mbednarz.phptravel.helpers.DriverFactory;
 import com.mbednarz.phptravel.helpers.DriverType;
 import com.mbednarz.phptravel.helpers.NoSuchDriverException;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
 
 /**
  * @author mbednarz-job
@@ -14,26 +18,28 @@ import org.testng.annotations.BeforeTest;
  * @project kurs-selenium
  */
 
+/* -- LESSON 88: Tworzenie nadrzędnej klasy testowej -- */
+
 public abstract class BaseTestSettings
 {
     protected WebDriver driver;
 
-    /* -- LESSON 88: Tworzenie nadrzędnej klasy testowej -- */
-    @BeforeTest
-    public void setUp() throws NoSuchDriverException
+    @BeforeMethod
+    public void setUp() throws NoSuchDriverException, IOException
     {
         System.out.println("Executed BEFORE test!");
 
         // DRIVER CONFIG
         //String driverPath = "E:\\IT Knowledge Base\\DEV & QA\\Testing\\MB_Testing_Projects\\Selenium3Course\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         //System.setProperty("webdriver.chrome.driver", driverPath);
-        driver = DriverFactory.getDriver(DriverType.IE);
+        driver = DriverFactory.getDriver(DriverType.CHROME);
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown()
     {
         System.out.println("Executed AFTER test!");
         driver.quit();
+        DriverFactory.resetDriver();
     }
 }
