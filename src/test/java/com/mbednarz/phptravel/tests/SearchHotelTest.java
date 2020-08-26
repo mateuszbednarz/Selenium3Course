@@ -45,7 +45,7 @@ public class SearchHotelTest extends BaseTestSettings
     public void searchHotelTest(String city, String checkInDate, String checkOutDate,
                                 String fHotelName, String fPrice,
                                 String sHotelName, String sPrice,
-                                String tHotelName, String tPrice) throws InterruptedException, IOException
+                                String tHotelName, String tPrice) throws IOException
     {
         //driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
